@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Simplytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

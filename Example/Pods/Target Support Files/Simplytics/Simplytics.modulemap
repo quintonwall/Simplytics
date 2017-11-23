@@ -1,0 +1,6 @@
+framework module Simplytics {
+  umbrella header "Simplytics-umbrella.h"
+
+  export *
+  module * { export * }
+}
