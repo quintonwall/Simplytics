@@ -6,49 +6,41 @@
 //
 
 import RealmSwift
+import SwiftlySalesforce
 
 @objcMembers
 public class Simplytics {
     
+    //swiftlysalesforce connection
+    public var salesforce : Salesforce!
+    
     // MARK: Logging
-    public class func logEvent(_ event: String, funnel:String?=nil) {
+    public func logEvent(_ event: String, funnel:String?=nil) {
         
     }
     
-    public class func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: Any]) {
+    public func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: Any]) {
         
     }
     
-    public class func logScreen(_ screenName: String, funnel:String?=nil) {
+    public func logScreen(_ screenName: String, funnel:String?=nil) {
         
     }
     
-    public class func logScreen(_ screenName: String, funnel:String?=nil, withProperties properties: [String: Any]) {
+    public func logScreen(_ screenName: String, funnel:String?=nil, withProperties properties: [String: Any]) {
        
     }
     
-    public class func logError(_ name: String, funnel:String?=nil, message: String?, properties: [String: Any]? = nil, error: Error?) {
+    public func logError(_ name: String, funnel:String?=nil, message: String?, properties: [String: Any]? = nil, error: Error?) {
     }
     
     /**
      * explcitly write local realm records into salesforce
      */
-    public class func write() {
+    public func write() {
         
     }
     
-    
-    /**
-     * Initialize Simplytics to your salesforce instance
-     - Parameters:
-     - consumerKey: The consumer key from your Salesforce connected app
-     - redirectURL: The success/redirect url from your Salesforce connected app
-     - hostname: The hostname of your Salesforce instance
-
-     */
-    public class func initialize(consumerKey : String, redirectURL: String, hostname : String) {
-        
-    }
     
     // MARK: lifecycle
     public class func applicationDidLaunch() {
@@ -76,7 +68,7 @@ public class Simplytics {
  - name: the name of the event. eg: Button tapped
  - value: a descriptive string. eg: Add to cart on clearance items page.
  */
-class EventProperties: Object {
+@objcMembers class EventProperties: Object {
     dynamic var name = ""
     dynamic var value = ""
 }

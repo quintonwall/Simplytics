@@ -119,11 +119,11 @@
 		57F3B0F75BE2A9A63D054A518378C7A0 /* RLMListBase.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 3493ED85F1F7A3CC83DB1AF63FFBC49F /* RLMListBase.h */; };
 		5A2F8A89642062CDBB385D6C73720D6F /* RLMSyncUtil_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = ADEF1ED148C369D1F35150BBBB03A30F /* RLMSyncUtil_Private.h */; };
 		5A9E4895027A555F32B9237E67BE26D4 /* placeholder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA29E8DFE7CA0D0671B8BF98E8DA7F72 /* placeholder.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.0.2\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
-		5AB9523E1FC770060072F974 /* SEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523A1FC770060072F974 /* SEvent.swift */; };
-		5AB9523F1FC770060072F974 /* SApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523B1FC770060072F974 /* SApplication.swift */; };
-		5AB952401FC770060072F974 /* SFunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523C1FC770060072F974 /* SFunnel.swift */; };
-		5AB952411FC770060072F974 /* Simplytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523D1FC770060072F974 /* Simplytics.swift */; };
 		5AD696C50859223260B8FA13B87BD019 /* RLMSyncConfiguration_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 3488A809EDA0AF855E6CB49559F6AC39 /* RLMSyncConfiguration_Private.h */; };
+		5ADD74FF1FC8907D00B555C5 /* Simplytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523D1FC770060072F974 /* Simplytics.swift */; };
+		5ADD75001FC8908300B555C5 /* SFunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523C1FC770060072F974 /* SFunnel.swift */; };
+		5ADD75011FC8908800B555C5 /* SApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523B1FC770060072F974 /* SApplication.swift */; };
+		5ADD75021FC8908D00B555C5 /* SEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523A1FC770060072F974 /* SEvent.swift */; };
 		5C07E35F6AA99C4BA30A92A50EA6AC0C /* Simplytics-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 920189F648B6A91444665C5B1549642B /* Simplytics-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D0056F50DFC23103DA22BD33DEB241B /* RLMObjectSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = 31E1A368CA4A88B64A35219C56295F5C /* RLMObjectSchema.h */; };
 		5DB0ECCD37B7055350FF2FB7A28DD95F /* Realm.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = D6661106EFE52E675A66BEC83DD3F470 /* Realm.h */; };
@@ -233,7 +233,6 @@
 		C1F5A20A37692B47DBC801BB812E80DB /* keychain_helper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC50902FABA69D2E71FAF68E51467E19 /* keychain_helper.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.0.2\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
 		C379D0DCE6DC0F5049D87E939AC5480E /* object.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCA7AA5E415546AD8FE2AED803E1953C /* object.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.0.2\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
 		C397FFC5CB85C3472162FA054B9464DC /* AnyPromise.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACECE1E88B7A6AFE14DF1734B8290623 /* AnyPromise.swift */; };
-		C3E387FD8CE6056399AA75C38B4177C6 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4571B54C3909AF816733866F4AE547E9 /* ReplaceMe.swift */; };
 		C6D189986EA52576E65BAEEF5FCEA198 /* RLMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 335B736B6688FBC6DADDBE2A8701F769 /* RLMProperty.h */; };
 		C8BAD050367285A7BD057A9291494C48 /* NSNotificationCenter+AnyPromise.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C5C232009A9B3FDD97422BAB24193C4 /* NSNotificationCenter+AnyPromise.m */; };
 		C8F3F5D9A426D93817984D54864BE1CB /* RLMObject_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = ABEDB47CA53531A07B341882BFF35446 /* RLMObject_Private.h */; };
@@ -526,7 +525,6 @@
 		41EAFB21AA1E82332725D51A79222772 /* RLMMigration_Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMMigration_Private.h; path = include/RLMMigration_Private.h; sourceTree = "<group>"; };
 		423705CC09BCAAA1BCBB165FE3DF04C6 /* RLMObjectStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMObjectStore.h; path = include/RLMObjectStore.h; sourceTree = "<group>"; };
 		4428809D53C590458C824218655B70F0 /* List.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = List.swift; path = RealmSwift/List.swift; sourceTree = "<group>"; };
-		4571B54C3909AF816733866F4AE547E9 /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ReplaceMe.swift; path = Simplytics/Classes/ReplaceMe.swift; sourceTree = "<group>"; };
 		47D2E74C7578B32E2D394E3AEC23E4B1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		47D4D9DAF19C234143751B20834806BC /* Pods-Simplytics_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Simplytics_Tests-umbrella.h"; sourceTree = "<group>"; };
 		48C40106B0962B65224411FE5D17A820 /* RLMRealmConfiguration+Sync.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = "RLMRealmConfiguration+Sync.mm"; path = "Realm/RLMRealmConfiguration+Sync.mm"; sourceTree = "<group>"; };
@@ -833,7 +831,6 @@
 				5AB9523A1FC770060072F974 /* SEvent.swift */,
 				5AB9523C1FC770060072F974 /* SFunnel.swift */,
 				5AB9523D1FC770060072F974 /* Simplytics.swift */,
-				4571B54C3909AF816733866F4AE547E9 /* ReplaceMe.swift */,
 				14377C7D125A3D76C60C681B4826ED43 /* Support Files */,
 			);
 			name = Simplytics;
@@ -1618,11 +1615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5AB952411FC770060072F974 /* Simplytics.swift in Sources */,
-				5AB9523E1FC770060072F974 /* SEvent.swift in Sources */,
-				5AB9523F1FC770060072F974 /* SApplication.swift in Sources */,
 				05CC4E54A54B2247863A971BEAF4851C /* Pods-Simplytics_Example-dummy.m in Sources */,
-				5AB952401FC770060072F974 /* SFunnel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1658,8 +1651,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3E387FD8CE6056399AA75C38B4177C6 /* ReplaceMe.swift in Sources */,
+				5ADD74FF1FC8907D00B555C5 /* Simplytics.swift in Sources */,
+				5ADD75011FC8908800B555C5 /* SApplication.swift in Sources */,
 				FEC6872E7FD0CA9DCAB7ED4A0847A0B0 /* Simplytics-dummy.m in Sources */,
+				5ADD75021FC8908D00B555C5 /* SEvent.swift in Sources */,
+				5ADD75001FC8908300B555C5 /* SFunnel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

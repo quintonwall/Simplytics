@@ -8,8 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2D8DEF469B82D766CD622E81 /* Pods_Simplytics_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F59C8F993623F433E76186C /* Pods_Simplytics_Tests.framework */; };
+		5ADD74FA1FC8895D00B555C5 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74F91FC8895D00B555C5 /* FeaturedViewController.swift */; };
+		5ADD74FC1FC8897300B555C5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74FB1FC8897300B555C5 /* ContactsTableViewController.swift */; };
+		5ADD74FE1FC8898700B555C5 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */; };
+		5ADD75041FC8968000B555C5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD75031FC8968000B555C5 /* Contact.swift */; };
+		5ADD75061FC89B3900B555C5 /* SalesforceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD75051FC89B3900B555C5 /* SalesforceDelegate.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
-		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
@@ -33,10 +37,14 @@
 		52C1F0EC4376D677D3C0C9D4 /* Pods-Simplytics_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simplytics_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simplytics_Tests/Pods-Simplytics_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		53615F0F596AC5CEFE1EBB71 /* Simplytics.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Simplytics.podspec; path = ../Simplytics.podspec; sourceTree = "<group>"; };
 		543E4B9690FEE2354FD7946A /* Pods-Simplytics_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simplytics_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simplytics_Example/Pods-Simplytics_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		5ADD74F91FC8895D00B555C5 /* FeaturedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
+		5ADD74FB1FC8897300B555C5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
+		5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		5ADD75031FC8968000B555C5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		5ADD75051FC89B3900B555C5 /* SalesforceDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalesforceDelegate.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Simplytics_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simplytics_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		607FACD71AFB9204008FA782 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		607FACDA1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		607FACDC1AFB9204008FA782 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -114,11 +122,15 @@
 			isa = PBXGroup;
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
-				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				5ADD74F91FC8895D00B555C5 /* FeaturedViewController.swift */,
+				5ADD74FB1FC8897300B555C5 /* ContactsTableViewController.swift */,
+				5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */,
+				5ADD75031FC8968000B555C5 /* Contact.swift */,
+				5ADD75051FC89B3900B555C5 /* SalesforceDelegate.swift */,
 			);
 			name = "Example for Simplytics";
 			path = Simplytics;
@@ -379,8 +391,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				5ADD74FE1FC8898700B555C5 /* ContactsTableViewCell.swift in Sources */,
+				5ADD74FA1FC8895D00B555C5 /* FeaturedViewController.swift in Sources */,
+				5ADD75041FC8968000B555C5 /* Contact.swift in Sources */,
+				5ADD75061FC89B3900B555C5 /* SalesforceDelegate.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				5ADD74FC1FC8897300B555C5 /* ContactsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

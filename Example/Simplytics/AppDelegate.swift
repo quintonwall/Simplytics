@@ -8,15 +8,35 @@
 
 import UIKit
 import Simplytics
+import SwiftlySalesforce
+
+var salesforce: Salesforce!
+var simplytics: Simplytics!
+
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
 
     var window: UIWindow?
+    
+    //salesforce connection config
+    let consumerKey = "3MVG9g9rbsTkKnAVc3vWPrd4Tx5oASFdziVKcos73oKPZD1yp3MTohoAt3sPZAcmv3JMeSnK1BUmfFUOfNY8d"
+    let callbackURL = URL(string: "thcompass://success")!
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        // Configure SwiftlySalesforce
+        salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL)
+
+        return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        handleCallbackURL(url, for: salesforce.connectedApp)
+        //initalize simplytics connection, via SwiftlySalesforce
+        simplytics.salesforce = salesforce
+        
         return true
     }
 
