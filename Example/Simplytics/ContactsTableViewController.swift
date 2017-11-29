@@ -54,11 +54,11 @@ class ContactsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
+    /*
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Contacts"
     }
-    
+    */
 
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -68,7 +68,11 @@ class ContactsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return SalesforceDelegate.shared.contacts!.count
+        if let c = SalesforceDelegate.shared.contacts  {
+            return c.count
+        } else {
+            return 0
+        }
     }
 
     

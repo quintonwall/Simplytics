@@ -20,22 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     var window: UIWindow?
     
     //salesforce connection config
-    let consumerKey = "3MVG9g9rbsTkKnAVc3vWPrd4Tx5oASFdziVKcos73oKPZD1yp3MTohoAt3sPZAcmv3JMeSnK1BUmfFUOfNY8d"
-    let callbackURL = URL(string: "thcompass://success")!
+    let consumerKey = "3MVG9g9rbsTkKnAVc3vWPrd4Tx1r09vhebUfiPsDFQoNUaKlpRgS10L.Pl5pRhx0anOVUUd4ERieJr6WwWijr"
+    let callbackURL = URL(string: "simplytics://success")!
+    let hostname = "na73.lightning.force.com"
     
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Configure SwiftlySalesforce
-        salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL)
-
+        salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL, loginHost: hostname)
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         handleCallbackURL(url, for: salesforce.connectedApp)
-        //initalize simplytics connection, via SwiftlySalesforce
-        simplytics.salesforce = salesforce
+        //now that we are authed, pass the handle to simplytics.
+        simplytics = Simplytics(swiftlysalesforce: salesforce)
+        //then we can start logging
+        simplytics.logApp(Bundle.main.bundleIdentifier!)
         
         return true
     }

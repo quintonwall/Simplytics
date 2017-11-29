@@ -9,35 +9,51 @@ import RealmSwift
 import SwiftlySalesforce
 
 @objcMembers
-public class Simplytics {
+open class Simplytics {
     
     //swiftlysalesforce connection
     public var salesforce : Salesforce!
     
+    public init(swiftlysalesforce: Salesforce) {
+        self.salesforce = swiftlysalesforce
+    }
+    
     // MARK: Logging
-    public func logEvent(_ event: String, funnel:String?=nil) {
+    open func logEvent(_ event: String, funnel:String?=nil) {
         
     }
     
-    public func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: Any]) {
+    open func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: Any]) {
         
     }
     
-    public func logScreen(_ screenName: String, funnel:String?=nil) {
+    open func logScreen(_ screenName: String, funnel:String?=nil) {
         
     }
     
-    public func logScreen(_ screenName: String, funnel:String?=nil, withProperties properties: [String: Any]) {
+    open func logScreen(_ screenName: String, funnel:String?=nil, withProperties properties: [String: Any]) {
        
     }
     
     public func logError(_ name: String, funnel:String?=nil, message: String?, properties: [String: Any]? = nil, error: Error?) {
     }
     
+    open func logApp(_ name : String) {
+        let realm = try! Realm()
+        try! realm.write() {
+            let model : String =  UIDevice().model
+            let appname : String = name
+            let appversion: String = Bundle.main.releaseVersionNumber!
+            let buildnumber: String = Bundle.main.buildVersionNumber!
+            let device: String = UIDevice().type.rawValue
+            
+           realm.create(SApplication.self, value: [device, model, appname, appversion, buildnumber], update:true)
+        }
+    }
     /**
      * explcitly write local realm records into salesforce
      */
-    public func write() {
+    open func write() {
         
     }
     

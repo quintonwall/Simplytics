@@ -124,6 +124,8 @@
 		5ADD75001FC8908300B555C5 /* SFunnel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523C1FC770060072F974 /* SFunnel.swift */; };
 		5ADD75011FC8908800B555C5 /* SApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523B1FC770060072F974 /* SApplication.swift */; };
 		5ADD75021FC8908D00B555C5 /* SEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AB9523A1FC770060072F974 /* SEvent.swift */; };
+		5ADD75091FCB130000B555C5 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD75071FCB12FB00B555C5 /* UIDevice.swift */; };
+		5ADD750B1FCB153400B555C5 /* Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD750A1FCB153400B555C5 /* Bundle.swift */; };
 		5C07E35F6AA99C4BA30A92A50EA6AC0C /* Simplytics-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 920189F648B6A91444665C5B1549642B /* Simplytics-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5D0056F50DFC23103DA22BD33DEB241B /* RLMObjectSchema.h in Headers */ = {isa = PBXBuildFile; fileRef = 31E1A368CA4A88B64A35219C56295F5C /* RLMObjectSchema.h */; };
 		5DB0ECCD37B7055350FF2FB7A28DD95F /* Realm.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = D6661106EFE52E675A66BEC83DD3F470 /* Realm.h */; };
@@ -551,6 +553,8 @@
 		5AB9523C1FC770060072F974 /* SFunnel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SFunnel.swift; path = Simplytics/Classes/SFunnel.swift; sourceTree = "<group>"; };
 		5AB9523D1FC770060072F974 /* Simplytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Simplytics.swift; path = Simplytics/Classes/Simplytics.swift; sourceTree = "<group>"; };
 		5AC42D4C7E842FFAB9A2A8F0F63BFE2D /* UIViewController+AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+AnyPromise.m"; path = "Extensions/UIKit/Sources/UIViewController+AnyPromise.m"; sourceTree = "<group>"; };
+		5ADD75071FCB12FB00B555C5 /* UIDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
+		5ADD750A1FCB153400B555C5 /* Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bundle.swift; sourceTree = "<group>"; };
 		5B00DCD0CFD11F0658358026D40C1438 /* RLMSyncPermission.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = RLMSyncPermission.mm; path = Realm/RLMSyncPermission.mm; sourceTree = "<group>"; };
 		5B991E72BF112EDE5567B807065C0975 /* RLMAccessor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RLMAccessor.h; path = include/RLMAccessor.h; sourceTree = "<group>"; };
 		5CE34EC9653269DC6712010E4552F53B /* UIView+Promise.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Promise.swift"; path = "Extensions/UIKit/Sources/UIView+Promise.swift"; sourceTree = "<group>"; };
@@ -832,6 +836,8 @@
 				5AB9523C1FC770060072F974 /* SFunnel.swift */,
 				5AB9523D1FC770060072F974 /* Simplytics.swift */,
 				14377C7D125A3D76C60C681B4826ED43 /* Support Files */,
+				5ADD75071FCB12FB00B555C5 /* UIDevice.swift */,
+				5ADD750A1FCB153400B555C5 /* Bundle.swift */,
 			);
 			name = Simplytics;
 			path = ../..;
@@ -1652,6 +1658,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ADD74FF1FC8907D00B555C5 /* Simplytics.swift in Sources */,
+				5ADD750B1FCB153400B555C5 /* Bundle.swift in Sources */,
+				5ADD75091FCB130000B555C5 /* UIDevice.swift in Sources */,
 				5ADD75011FC8908800B555C5 /* SApplication.swift in Sources */,
 				FEC6872E7FD0CA9DCAB7ED4A0847A0B0 /* Simplytics-dummy.m in Sources */,
 				5ADD75021FC8908D00B555C5 /* SEvent.swift in Sources */,

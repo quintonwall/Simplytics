@@ -9,15 +9,20 @@ import RealmSwift
 
 @objcMembers class SApplication : Object {
     
-     dynamic var id = 0
-     dynamic var name = ""
-    /// current date and time
-     dynamic var createdAt = Date()
-     dynamic var osVersion = ""
-     dynamic var device = ""
+    dynamic var id =  UIDevice.current.identifierForVendor?.uuidString
+    dynamic var uuid = UIDevice.current.identifierForVendor?.uuidString
+    dynamic var device = ""
+    dynamic var model = ""
+    dynamic var appname = ""
+    dynamic var appversion = ""
+    dynamic var buildnumber = ""
+    
+    let funnels = List<SFunnel>()
+
     
     override static func primaryKey() -> String? {
         return "id"
     }
+    
     
 }
