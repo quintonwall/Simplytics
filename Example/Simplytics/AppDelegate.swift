@@ -29,13 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Configure SwiftlySalesforce
         salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL, loginHost: hostname)
+        simplytics = Simplytics(swiftlysalesforce: salesforce)
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         handleCallbackURL(url, for: salesforce.connectedApp)
-        //now that we are authed, pass the handle to simplytics.
-        simplytics = Simplytics(swiftlysalesforce: salesforce)
         //then we can start logging
         simplytics.logApp(Bundle.main.bundleIdentifier!)
         

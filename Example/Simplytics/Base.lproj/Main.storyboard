@@ -70,19 +70,17 @@
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="featured" id="MnT-ee-WbF"/>
                     <connections>
-                        <segue destination="CP6-3Y-BCq" kind="popoverPresentation" identifier="showpage2" popoverAnchorView="kh9-bI-dsS" id="sAw-NG-XtK">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="CP6-3Y-BCq" kind="presentation" identifier="showpage2" id="sAw-NG-XtK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="493.60000000000002" y="28.335832083958024"/>
         </scene>
-        <!--View Controller-->
+        <!--Another Page View Controller-->
         <scene sceneID="7Fb-7P-TKe">
             <objects>
-                <viewController id="CP6-3Y-BCq" sceneMemberID="viewController">
+                <viewController id="CP6-3Y-BCq" customClass="AnotherPageViewController" customModule="Simplytics_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="uE1-tZ-Mtn"/>
                         <viewControllerLayoutGuide type="bottom" id="zQ2-Hs-GBK"/>
@@ -116,6 +114,9 @@
                                 <state key="normal" title="Close">
                                     <color key="titleColor" red="0.98397237059999998" green="0.99210363629999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="closeTapped:" destination="CP6-3Y-BCq" eventType="touchUpInside" id="UDF-ee-Sru"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -201,6 +202,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="lmo-Se-ttc" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Wmc-DD-Y1o">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2D8DEF469B82D766CD622E81 /* Pods_Simplytics_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F59C8F993623F433E76186C /* Pods_Simplytics_Tests.framework */; };
+		5ABD4B151FCF4F95001D83C4 /* AnotherPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD4B141FCF4F94001D83C4 /* AnotherPageViewController.swift */; };
 		5ADD74FA1FC8895D00B555C5 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74F91FC8895D00B555C5 /* FeaturedViewController.swift */; };
 		5ADD74FC1FC8897300B555C5 /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74FB1FC8897300B555C5 /* ContactsTableViewController.swift */; };
 		5ADD74FE1FC8898700B555C5 /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */; };
@@ -37,6 +38,7 @@
 		52C1F0EC4376D677D3C0C9D4 /* Pods-Simplytics_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simplytics_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simplytics_Tests/Pods-Simplytics_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		53615F0F596AC5CEFE1EBB71 /* Simplytics.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Simplytics.podspec; path = ../Simplytics.podspec; sourceTree = "<group>"; };
 		543E4B9690FEE2354FD7946A /* Pods-Simplytics_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Simplytics_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Simplytics_Example/Pods-Simplytics_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		5ABD4B141FCF4F94001D83C4 /* AnotherPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherPageViewController.swift; sourceTree = "<group>"; };
 		5ADD74F91FC8895D00B555C5 /* FeaturedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		5ADD74FB1FC8897300B555C5 /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				5ADD74FD1FC8898700B555C5 /* ContactsTableViewCell.swift */,
 				5ADD75031FC8968000B555C5 /* Contact.swift */,
 				5ADD75051FC89B3900B555C5 /* SalesforceDelegate.swift */,
+				5ABD4B141FCF4F94001D83C4 /* AnotherPageViewController.swift */,
 			);
 			name = "Example for Simplytics";
 			path = Simplytics;
@@ -391,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ABD4B151FCF4F95001D83C4 /* AnotherPageViewController.swift in Sources */,
 				5ADD74FE1FC8898700B555C5 /* ContactsTableViewCell.swift in Sources */,
 				5ADD74FA1FC8895D00B555C5 /* FeaturedViewController.swift in Sources */,
 				5ADD75041FC8968000B555C5 /* Contact.swift in Sources */,
