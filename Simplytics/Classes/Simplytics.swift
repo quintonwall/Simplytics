@@ -6,33 +6,51 @@
 //
 
 import RealmSwift
+import Realm
 import SwiftlySalesforce
 
 @objcMembers
 open class Simplytics {
     
-    //swiftlysalesforce connection
+    /// swiftlysalesforce connection
     public var salesforce : Salesforce!
     
-    public init(swiftlysalesforce: Salesforce) {
-        self.salesforce = swiftlysalesforce
+    /// the mobile app being tracked
+    var application : SApplication!
+    
+    public init() {
     }
     
     // MARK: Logging
-    open func logEvent(_ event: String, funnel:String?=nil) {
+   
+    /**
+     * Log a specifc event.
+     * returns a unique id for the event which can be used to time an event duration by calling simplytics.endEvent.
+     */
+    open func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: String]?=nil) -> String {
+        let ep = List<EventProperties>()
         
+        if properties != nil {
+            for (key,value) in properties! {
+                let e = EventProperties()
+                e.name = key
+                e.value = value
+                ep.append(e)
+            }
+        }
+        let realm = try! Realm()
+        let uuid = UUID().uuidString
+        try! realm.write() {
+            realm.create(SEvent.self, value: [uuid, event, Date(), Date(), application, ep])
+        }
+        return uuid
     }
     
-    open func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: Any]) {
-        
-    }
-    
-    open func logScreen(_ screenName: String, funnel:String?=nil) {
-        
-    }
-    
-    open func logScreen(_ screenName: String, funnel:String?=nil, withProperties properties: [String: Any]) {
-       
+    public func endEvent(_ eventid : String) {
+       let realm = try! Realm()
+        try! realm.write {
+             realm.create(SEvent.self, value: ["id": eventid, "endedAt": Date()], update: true)
+        }
     }
     
     public func logError(_ name: String, funnel:String?=nil, message: String?, properties: [String: Any]? = nil, error: Error?) {
@@ -40,6 +58,7 @@ open class Simplytics {
     
     open func logApp(_ name : String) {
         let realm = try! Realm()
+        print("SIMPLYTICS using default Realm @ \(Realm.Configuration.defaultConfiguration.fileURL!)")
         try! realm.write() {
             let model : String =  UIDevice().model
             let appname : String = name
@@ -47,33 +66,18 @@ open class Simplytics {
             let buildnumber: String = Bundle.main.buildVersionNumber!
             let device: String = UIDevice().type.rawValue
             
-           realm.create(SApplication.self, value: [device, model, appname, appversion, buildnumber], update:true)
+            application = SApplication(value: [device, model, appname, appversion, buildnumber])
+            realm.add(application!, update: true)
+            
         }
     }
     /**
      * explcitly write local realm records into salesforce
      */
-    open func write() {
+    open func writeToSalesforce(swiftlysalesforce : Salesforce) {
         
     }
     
-    
-    // MARK: lifecycle
-    public class func applicationDidLaunch() {
-        //just in case the app crashed before we could write records to salesforce, lets do it on app launch
-    }
-    
-    public class func applicationWillEnterForeground() {
-        
-    }
-    
-    public class func applicationDidEnterBackground() {
-        //write to salesforce and clear realm objects
-    }
-    
-    public class func applicationWillTerminate() {
-       //write to salesforce and clear realm objects
-    }
 }
 
 
@@ -87,4 +91,11 @@ open class Simplytics {
 @objcMembers class EventProperties: Object {
     dynamic var name = ""
     dynamic var value = ""
+    
 }
+
+enum SimplyticsError : Error {
+    case configurationError(String)
+    case salesforceError(String)
+}
+

@@ -9,15 +9,20 @@
 import UIKit
 
 class AnotherPageViewController: UIViewController {
-
+   var pagedurationeventid = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        pagedurationeventid = simplytics.logEvent("Another Page screen active")
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        simplytics.endEvent(pagedurationeventid)
+    }
     @IBAction func closeTapped(_ sender: UIButton) {
-        simplytics.logEvent("Button Tapped", funnel: "Featured", withProperties: ["Button Name" : sender.titleLabel?.text, "Screen" : "Another Page"])
+        simplytics.logEvent("Button Tapped", funnel: "Featured", withProperties: ["Button Name" : sender.titleLabel?.text ?? "Show Another Page Button", "Screen" : "Another Page"])
         self.dismiss(animated: true, completion: nil)
     }
     

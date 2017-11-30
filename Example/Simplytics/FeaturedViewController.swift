@@ -12,7 +12,7 @@ class FeaturedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        simplytics.logScreen("Featured View", funnel: "Featured", withProperties: ["Lifecycle" : "Loaded"])
+        simplytics.logEvent("Featured View screen Loaded", funnel: "Featured")
 
 
         // Do any additional setup after loading the view.
@@ -24,7 +24,7 @@ class FeaturedViewController: UIViewController {
     }
     
     @IBAction func buttonTapped(_ sender: UIButton) {
-        simplytics.logEvent("Button Tapped", funnel: "Featured", withProperties: ["Button Name" : sender.titleLabel?.text])
+        simplytics.logEvent("Button Tapped", funnel: "Featured", withProperties: ["Button Name" : sender.titleLabel?.text ?? "Show Page 2 Button", "Screen" : "FeaturedView"])
         performSegue(withIdentifier: "showpage2", sender: sender)
     }
     

@@ -23,7 +23,9 @@ class ContactsTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         loadData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +35,9 @@ class ContactsTableViewController: UITableViewController {
     
     // MARK: - Salesforce
     public func loadData() {
+        let eventid = simplytics.logEvent("Query Contacts from Salesforce")
         first {
+           
             fulfill(SalesforceDelegate.shared.getContacts(), salesforce.identity())
             }.then {
                 (_, identity) -> Promise<UIImage> in
@@ -44,11 +48,14 @@ class ContactsTableViewController: UITableViewController {
                 }
             }.always {
                 self.tableView.reloadData()
+                simplytics.endEvent(eventid)
             }.catch {
                 // Handle any errors
                 (error) -> () in
+                simplytics.logError("Error fetching contacts", message: error.localizedDescription, error: error)
                 let alert = UIAlertController(title: "Error fetching contacts", message: error.localizedDescription, preferredStyle: UIAlertControllerStyle.alert)
                 alert.addAction(UIAlertAction(title: "Close", style: UIAlertActionStyle.default, handler: nil))
+            
                 self.present(alert, animated: true, completion: nil)
         }
     }
@@ -90,7 +97,7 @@ class ContactsTableViewController: UITableViewController {
         
         let cell = tableView.cellForRow(at: indexPath) as! ContactsTableViewCell
         
-        simplytics.logEvent("Selected Table Row", funnel: "Contacts", withProperties: ["Contact Selected" : cell.contactid])
+        simplytics.logEvent("Selected Table Row", funnel: "Contacts", withProperties: ["Contact Selected" : cell.contactid!])
     }
 
     /*

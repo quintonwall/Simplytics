@@ -29,15 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Configure SwiftlySalesforce
         salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL, loginHost: hostname)
-        simplytics = Simplytics(swiftlysalesforce: salesforce)
+        simplytics = Simplytics()
+        simplytics.logApp(Bundle.main.bundleIdentifier!)
         return true
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         handleCallbackURL(url, for: salesforce.connectedApp)
-        //then we can start logging
-        simplytics.logApp(Bundle.main.bundleIdentifier!)
-        
         return true
     }
 
@@ -49,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        simplytics.writeToSalesforce(swiftlysalesforce: salesforce)
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -61,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        simplytics.writeToSalesforce(swiftlysalesforce: salesforce)
     }
 
 
