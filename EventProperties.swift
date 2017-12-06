@@ -19,4 +19,8 @@ import RealmSwift
     dynamic var name = ""
     dynamic var value = ""
     
+    func asJSON() -> String {
+        return "{\"name\": \"\(name)\", \"value\": \"\(value)\"}"
+    }
+    
 }

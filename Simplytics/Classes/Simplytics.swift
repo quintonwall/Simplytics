@@ -111,20 +111,16 @@ open class Simplytics {
                     realm.add(self.application, update: true)
                 }
                 // then insert events into salesforce
-            var params : [String : Any] = [:]
-            params["forApp"] = self.application.salesforceid
-            
-                try! realm.write {
+                 try! realm.write {
                     let events = realm.objects(SEvent.self).filter("application.id = '\(self.application.id)'")
-                    params ["events"] = events
-                    print("DESC: \(events.description)")
+                    var ej = "{\"applicationid\" : \"\(self.application.id)\", \"events\" : ["
                     for e in events {
-                        for ep in e.properties {
-                            print("EP \(ep.name)")
-                        }
+                         ej.append(e.asJSON()+",")
                     }
+                    let jsonbody = ej.substring(to: ej.index(before: ej.endIndex))+"]}"
                 }
-            return salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: params)
+            
+            return salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: ["forApp" : self.application.salesforceid], headers: ["Content-Type":"application/json"])
         }.then { //clear everything ready for next time.
             (result: Data) -> Void in
             let realm = try! Realm()
@@ -142,28 +138,6 @@ open class Simplytics {
         }
     }
     
-    private func writeEventsToSalesforce(appid : String ) -> Promise<String> {
-        
-        let params : [String : String] = [:]
-        
-        let realm = try! Realm()
-        try! realm.write {
-            let events = realm.objects(SEvent.self).filter("application.id = '\(self.application.id)'")
-            print("DESC: \(events.description)")
-            for e in events {
-                for ep in e.properties {
-                    print("EP \(ep.name)")
-                }
-            }
-        }
-        return Promise { fulfill, reject in
-            // salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: params)
-            fulfill("ss")
-        }
-       // let params = ["events" : events.description, "forapp" : appid]
-       
-        
-    }
     
     private func generateAppID() -> String {
         return "\(UIDevice.current.identifierForVendor!.uuidString)-v\(Bundle.main.releaseVersionNumber!)-b\(Bundle.main.buildVersionNumber!)"
@@ -177,6 +151,38 @@ open class Simplytics {
                 fulfill(application.salesforceid)
             }
         }
+    }
+    
+    func getRealmJSON(realmObject: Object, realmType: Any) -> String {
+        do {
+            let realm = try Realm()
+            let table = realm.objects(realmType as! Object.Type)
+            if table.count == 0 {return "Empty Table"}
+            let mirrored_object = Mirror(reflecting: realmObject)
+            var properties = [String]()
+            for (_, attr) in mirrored_object.children.enumerated() {
+                if let property_name = attr.label as String! {
+                    properties.append(property_name)
+                }
+            }
+            var jsonObject = "["
+            for i in 1...table.count {
+                var str = "{"
+                var insideStr = String()
+                for property in properties {
+                    let filteredTable = table.value(forKey: property) as! [Any]
+                    insideStr += "\"\(property)\": \"\(filteredTable[i - 1])\","
+                }
+                let index = insideStr.characters.index(insideStr.startIndex, offsetBy: (insideStr.count - 2))
+                insideStr = String(insideStr[...index])
+                str += "\(insideStr)},"
+                jsonObject.append(str)
+            }
+            let index = jsonObject.characters.index(jsonObject.startIndex, offsetBy: (jsonObject.count - 2))
+            jsonObject = "\(String(jsonObject[...index]))]"
+            return jsonObject
+        }catch let error { print("\(error)") }
+        return "Problem reading Realm"
     }
 }
 

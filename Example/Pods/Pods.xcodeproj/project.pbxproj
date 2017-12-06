@@ -117,6 +117,7 @@
 		573A5D6AD743C53A615BBC05F6D23111 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3922CDC11016A0BEA3A2D600F10C03A4 /* Error.swift */; };
 		57B5253E42AFCB849C65EEB1C431A23A /* RLMProperty.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 335B736B6688FBC6DADDBE2A8701F769 /* RLMProperty.h */; };
 		57F3B0F75BE2A9A63D054A518378C7A0 /* RLMListBase.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 3493ED85F1F7A3CC83DB1AF63FFBC49F /* RLMListBase.h */; };
+		5A1E35F11FD867D300669046 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A1E35F01FD867D300669046 /* Date.swift */; };
 		5A2F8A89642062CDBB385D6C73720D6F /* RLMSyncUtil_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = ADEF1ED148C369D1F35150BBBB03A30F /* RLMSyncUtil_Private.h */; };
 		5A9E4895027A555F32B9237E67BE26D4 /* placeholder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AA29E8DFE7CA0D0671B8BF98E8DA7F72 /* placeholder.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.0.2\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC"; }; };
 		5ABD4B171FD715A1001D83C4 /* EventProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ABD4B161FD715A1001D83C4 /* EventProperties.swift */; };
@@ -549,6 +550,7 @@
 		562CD250E0AA9DE441EBA1396FF99D63 /* Pods_Simplytics_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Simplytics_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		56895C3EE27B95D086BD546EFD1512F3 /* SwiftlySalesforce.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftlySalesforce.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5801A3DB309213514D48228DB6A1CE0F /* AnyPromise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AnyPromise.m; path = Sources/AnyPromise.m; sourceTree = "<group>"; };
+		5A1E35F01FD867D300669046 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		5AB9523A1FC770060072F974 /* SEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SEvent.swift; path = Simplytics/Classes/SEvent.swift; sourceTree = "<group>"; };
 		5AB9523B1FC770060072F974 /* SApplication.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SApplication.swift; path = Simplytics/Classes/SApplication.swift; sourceTree = "<group>"; };
 		5AB9523C1FC770060072F974 /* SFunnel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SFunnel.swift; path = Simplytics/Classes/SFunnel.swift; sourceTree = "<group>"; };
@@ -833,13 +835,12 @@
 		07020E86EFEDD796C9225E554F502685 /* Simplytics */ = {
 			isa = PBXGroup;
 			children = (
+				5A1E35F21FD86FCC00669046 /* Extensions */,
 				5AB9523B1FC770060072F974 /* SApplication.swift */,
 				5AB9523A1FC770060072F974 /* SEvent.swift */,
 				5AB9523C1FC770060072F974 /* SFunnel.swift */,
 				5AB9523D1FC770060072F974 /* Simplytics.swift */,
 				14377C7D125A3D76C60C681B4826ED43 /* Support Files */,
-				5ADD75071FCB12FB00B555C5 /* UIDevice.swift */,
-				5ADD750A1FCB153400B555C5 /* Bundle.swift */,
 				5ABD4B161FD715A1001D83C4 /* EventProperties.swift */,
 			);
 			name = Simplytics;
@@ -977,6 +978,16 @@
 				07020E86EFEDD796C9225E554F502685 /* Simplytics */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		5A1E35F21FD86FCC00669046 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5ADD75071FCB12FB00B555C5 /* UIDevice.swift */,
+				5ADD750A1FCB153400B555C5 /* Bundle.swift */,
+				5A1E35F01FD867D300669046 /* Date.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		6F647E8262CF38494DAD0B245BE2AE16 /* Pods */ = {
@@ -1667,6 +1678,7 @@
 				FEC6872E7FD0CA9DCAB7ED4A0847A0B0 /* Simplytics-dummy.m in Sources */,
 				5ADD75021FC8908D00B555C5 /* SEvent.swift in Sources */,
 				5ADD75001FC8908300B555C5 /* SFunnel.swift in Sources */,
+				5A1E35F11FD867D300669046 /* Date.swift in Sources */,
 				5ABD4B171FD715A1001D83C4 /* EventProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

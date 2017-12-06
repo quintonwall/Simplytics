@@ -32,5 +32,19 @@ import RealmSwift
         return "id"
     }
     
+    func asJSON() -> String {
+        var propsjson = "[]"
+        
+        if (properties.count > 0) {
+            var ej = "["
+            for e in properties {
+                ej.append(e.asJSON()+",")
+            }
+            propsjson = ej.substring(to: ej.index(before: ej.endIndex))+"]"
+        }
+        
+        return "{\"id\": \"\(id)\",\"name\": \"\(name)\",\"createdAt\": \"\(createdAt.toRFC3339String())\",\"endedAt\": \"\(endedAt.toRFC3339String())\",\"properties\": \(propsjson), \"application\": \"\(application!.id)\"}"
+    }
+    
     
 }
