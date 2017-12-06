@@ -25,7 +25,6 @@ import RealmSwift
     /// a user defined key value pair of property name + value. eg: 'Add To Cart Tapped' : '3 items'
      dynamic var properties = List<EventProperties>()
     
-   
     
     
     

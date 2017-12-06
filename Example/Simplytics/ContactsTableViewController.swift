@@ -25,7 +25,11 @@ class ContactsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         loadData()
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //simplytics.writeToSalesforce(salesforce)
     }
 
     override func didReceiveMemoryWarning() {

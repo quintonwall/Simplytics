@@ -8,12 +8,11 @@
 import RealmSwift
 import Realm
 import SwiftlySalesforce
+import PromiseKit
 
 @objcMembers
 open class Simplytics {
     
-    /// swiftlysalesforce connection
-    public var salesforce : Salesforce!
     
     /// the mobile app being tracked
     var application : SApplication!
@@ -60,39 +59,127 @@ open class Simplytics {
         let realm = try! Realm()
         print("SIMPLYTICS using default Realm @ \(Realm.Configuration.defaultConfiguration.fileURL!)")
         try! realm.write() {
-            let model : String =  UIDevice().model
-            let appname : String = name
-            let appversion: String = Bundle.main.releaseVersionNumber!
-            let buildnumber: String = Bundle.main.buildVersionNumber!
-            let device: String = UIDevice().type.rawValue
             
-            application = SApplication(value: [device, model, appname, appversion, buildnumber])
-            realm.add(application!, update: true)
+            let appid = generateAppID()
+            //check if there is an existing realm object
+            let eapp = realm.object(ofType: SApplication.self, forPrimaryKey: appid)
             
+            if( eapp == nil) {
+                let model :String =  UIDevice().model
+                 let salesforceid:String = ""
+                 let appname:String = name
+                 let appversion:String = Bundle.main.releaseVersionNumber!
+                 let buildnumber:String = Bundle.main.buildVersionNumber!
+                 let device:String = UIDevice().type.rawValue
+                 let id:String = generateAppID()
+                 let uuid:String  = UIDevice.current.identifierForVendor!.uuidString
+               
+                let app = SApplication(value: [id, salesforceid, uuid, device, model, appname, appversion, buildnumber])
+                realm.add(app, update: true)
+                self.application = app
+            } else {
+                self.application = eapp
+            }
         }
     }
     /**
      * explcitly write local realm records into salesforce
      */
-    open func writeToSalesforce(swiftlysalesforce : Salesforce) {
+    open func writeToSalesforce(_ salesforce : Salesforce)  {
+    
+        //Check to see if application has been initialized.
+        guard application != nil else {
+            print("Write to Salesforce aborted. Application was never created. Did you call logApp?")
+            return
+        }
+      
+        //if so, then lets check to see if it exists in salesforce. One record is created per device+app version+build number
+        first {
+            salesforce.query(soql: "SELECT Id FROM Simplytics_Application__c WHERE Name = '\(application.id)'")
+        }.then {
+            (result: QueryResult<Record>) -> Promise<String> in // if we get a result, the application has already been logged before.
+            if result.records.count == 0 { //this must be a new version/build of the app
+                 return salesforce.insert(type: "Simplytics_Application__c", fields: ["Name" : self.application.id, "UUID__c" : self.application.uuid, "Device__c" : self.application.device, "App_Version__c" : self.application.appversion, "App_Build_Number__c" : self.application.buildnumber, "Model__c" : self.application.model, "App_Name__c" : self.application.appname])
+            } else { //get the existing sfdcid
+                return self.getSalesforceApplicationID()
+            }
+        }.then { // update the application with the sfdcid,
+            sfdcid  -> Promise<Data> in
+                let realm = try! Realm()
+                try! realm.write {
+                    self.application.salesforceid = sfdcid
+                    realm.add(self.application, update: true)
+                }
+                // then insert events into salesforce
+            var params : [String : Any] = [:]
+            params["forApp"] = self.application.salesforceid
+            
+                try! realm.write {
+                    let events = realm.objects(SEvent.self).filter("application.id = '\(self.application.id)'")
+                    params ["events"] = events
+                    print("DESC: \(events.description)")
+                    for e in events {
+                        for ep in e.properties {
+                            print("EP \(ep.name)")
+                        }
+                    }
+                }
+            return salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: params)
+        }.then { //clear everything ready for next time.
+            (result: Data) -> Void in
+            let realm = try! Realm()
+            try! realm.write {
+                realm.delete(realm.objects(EventProperties.self))
+                realm.delete(realm.objects(SEvent.self))
+                realm.delete(realm.objects(SFunnel.self))
+            }
+        }.catch {
+                error in
+                // Handle error...
+               // throw SimplyticsError.salesforceError(error.localizedDescription)
+            print(error)
+              print("SIMPLYTICS problem writing to Salesforce \(error)")
+        }
+    }
+    
+    private func writeEventsToSalesforce(appid : String ) -> Promise<String> {
+        
+        let params : [String : String] = [:]
+        
+        let realm = try! Realm()
+        try! realm.write {
+            let events = realm.objects(SEvent.self).filter("application.id = '\(self.application.id)'")
+            print("DESC: \(events.description)")
+            for e in events {
+                for ep in e.properties {
+                    print("EP \(ep.name)")
+                }
+            }
+        }
+        return Promise { fulfill, reject in
+            // salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: params)
+            fulfill("ss")
+        }
+       // let params = ["events" : events.description, "forapp" : appid]
+       
         
     }
     
-}
-
-
-/**
- EventProperties functions allows the storing of custom defined events in realm.
- It is effectively a [string : string], but realm doesnt support this natively --- it has to be an object.
- 
- - name: the name of the event. eg: Button tapped
- - value: a descriptive string. eg: Add to cart on clearance items page.
- */
-@objcMembers class EventProperties: Object {
-    dynamic var name = ""
-    dynamic var value = ""
+    private func generateAppID() -> String {
+        return "\(UIDevice.current.identifierForVendor!.uuidString)-v\(Bundle.main.releaseVersionNumber!)-b\(Bundle.main.buildVersionNumber!)"
+    }
+    private func getSalesforceApplicationID() -> Promise<String> {
     
+        return Promise { fulfill, reject in
+            if application == nil {
+                reject(SimplyticsError.configurationError("Application was never created. Did you call logApp?"))
+            } else {
+                fulfill(application.salesforceid)
+            }
+        }
+    }
 }
+
 
 enum SimplyticsError : Error {
     case configurationError(String)

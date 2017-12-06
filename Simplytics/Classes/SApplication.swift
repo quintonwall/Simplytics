@@ -9,8 +9,9 @@ import RealmSwift
 
 @objcMembers class SApplication : Object {
     
-    dynamic var id =  UIDevice.current.identifierForVendor?.uuidString
-    dynamic var uuid = UIDevice.current.identifierForVendor?.uuidString
+    dynamic var id =  ""
+    dynamic var salesforceid = ""
+    dynamic var uuid = ""
     dynamic var device = ""
     dynamic var model = ""
     dynamic var appname = ""
