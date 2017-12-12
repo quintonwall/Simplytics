@@ -9,6 +9,7 @@ Simplytics is a lightweight logging framework for iOS apps which use Salesforce 
 
 ```swift
   simplytics.logEvent("Simplytics is awesome", funnel: "ShoppingCart")
+```
 
 ## Example
 
