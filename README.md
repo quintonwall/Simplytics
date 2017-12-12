@@ -8,8 +8,7 @@
 Simplytics is a lightweight logging framework for iOS apps which use Salesforce as a backend. You can log app details like build number, device, and OS version, or in-app events like buttons tapped, tables selected, and duration of things like how long a user was on a particular screen. How you use Simplytics is up to you. Its small, lightweight, and efficient. It is designed to be simple to use, thus the name Simplytics.
 
 ```swift
-  simplytics.logEvent("Simplytics is awesome", funnel: "ShoppingCart", withProperties: ["Button Name" : addToCart?.text ?? "Add", "Screen" : "Clearance Items"])
-```
+  simplytics.logEvent("Simplytics is awesome", funnel: "ShoppingCart")
 
 ## Example
 
