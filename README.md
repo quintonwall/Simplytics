@@ -15,7 +15,21 @@ Simplytics is a lightweight logging framework for iOS apps which use Salesforce 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Mobile App Setup
+## Installation
+
+### CocoaPods
+Simplytics is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
+
+```ruby
+pod 'Simplytics'
+```
+
+### Salesforce
+
+## Setup
+
+### Mobile App
 V1 relies on SwiftlySaleforce for authentication to salesforce. Support for the Salesforce Mobile SDK will come shortly with a refactor to the auth config. For now, setting up Simplytics should be handled directly after the SwiftlySalesforce config in the didFinishLauchingWithOptions func of your AppDelegate:
 
 ```swift
@@ -29,11 +43,11 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     return true
 }
 ```
-### Offline Optimization
+#### Offline Optimization
 You will notice that the example above also logs the app directly after instantiating Simplytics, and before any sort of successful authentication into Salesforce.  Simplytics works entirely offline, using a local Realm database, to store event information. This allows extremely fast writes, a greatly reduced likelihood of loosing any events due to app crashes, and highly efficient use of network calls to salesforce for logging event data. Simplytics leaves when to write events to Salesforce up to the discretion of the developer.
 
 
-### Writing to Salesforce
+#### Writing to Salesforce
 To write events to Salesforce is via the writeToSalesforce func, which accepts an authenticated SwiftlySalesforce instance.
 
 ```swift
@@ -50,18 +64,27 @@ func applicationWillResignActive(_ application: UIApplication) {
 
 For a complete example of configuring Simplytics, check out the AppDelegate in the sample app.
 
-## Salesforce Setup
+### Salesforce
+
+## Usage
+### Mobile App
+
+### Log an event
+
+### Events with properties
+
+### Timed events
+
+
+### Salesforce
+#### Object model
+
+#### Reports
 
 
 
-## Installation
 
-Simplytics is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
 
-```ruby
-pod 'Simplytics'
-```
 
 ## Author
 
