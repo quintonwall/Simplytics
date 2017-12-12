@@ -15,7 +15,7 @@ Simplytics is a lightweight logging framework for iOS apps which use Salesforce 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Setup
+## Mobile App Setup
 V1 relies on SwiftlySaleforce for authentication to salesforce. Support for the Salesforce Mobile SDK will come shortly with a refactor to the auth config. For now, setting up Simplytics should be handled directly after the SwiftlySalesforce config in the didFinishLauchingWithOptions func of your AppDelegate:
 
 ```swift
@@ -49,6 +49,8 @@ func applicationWillResignActive(_ application: UIApplication) {
 ```
 
 For a complete example of configuring Simplytics, check out the AppDelegate in the sample app.
+
+## Salesforce Setup
 
 
 
