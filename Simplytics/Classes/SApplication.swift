@@ -18,7 +18,7 @@ import RealmSwift
     dynamic var appversion = ""
     dynamic var buildnumber = ""
     
-    let funnels = List<SFunnel>()
+   // let funnels = List<SFunnel>()
 
     
     override static func primaryKey() -> String? {

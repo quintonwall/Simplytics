@@ -23,6 +23,12 @@ public extension Date {
         return formatter.string(from: self)
     }
     
+    public func toISO8601String() -> String {
+        let formatter = Static.formatter
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        return formatter.string(from: self)
+    }
+    
     public static func dateFromRFC3339String(string: String) -> Date? {
         return dateFromString(dateString: string, withFormat: "yyyy-MM-dd'T'HH:mm:ss.S'Z'")
     }
@@ -30,6 +36,12 @@ public extension Date {
     public func toPrettyString() -> String {
         let formatter = Static.formatter
         formatter.dateFormat = "E MMM dd, yyyy 'at' h:mm a"
+        return formatter.string(from: self)
+    }
+    
+    public func toDateTimeStringWithSeconds() -> String {
+        let formatter = Static.formatter
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: self)
     }
     

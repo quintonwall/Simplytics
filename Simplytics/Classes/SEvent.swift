@@ -22,6 +22,13 @@ import RealmSwift
      /// the application which this tracked event is related to
     dynamic var application : SApplication?
     
+    /// funnel name
+    dynamic var funnel = "" {
+        didSet {
+            funnel = funnel.uppercased()
+        }
+    }
+    
     /// a user defined key value pair of property name + value. eg: 'Add To Cart Tapped' : '3 items'
      dynamic var properties = List<EventProperties>()
     
@@ -43,7 +50,7 @@ import RealmSwift
             propsjson = ej.substring(to: ej.index(before: ej.endIndex))+"]"
         }
         
-        return "{\"id\": \"\(id)\",\"name\": \"\(name)\",\"createdAt\": \"\(createdAt.toRFC3339String())\",\"endedAt\": \"\(endedAt.toRFC3339String())\",\"properties\": \(propsjson), \"application\": \"\(application!.id)\"}"
+        return "{\"id\": \"\(id)\",\"name\": \"\(name)\",\"funnel\": \"\(funnel.uppercased())\",\"createdAt\": \"\(createdAt.toDateTimeStringWithSeconds())\",\"endedAt\": \"\(endedAt.toDateTimeStringWithSeconds())\",\"properties\": \(propsjson), \"application\": \"\(application!.id)\"}"
     }
     
     

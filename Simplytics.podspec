@@ -40,6 +40,6 @@ Add mobile analytics to Salesforce native apps and track funnels, events, action
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
   s.dependency 'RealmSwift', '~> 3.0.2'
-  s.dependency 'SwiftlySalesforce'
+  s.dependency 'SwiftlySalesforce', '~> 6.0.1'
 
 end

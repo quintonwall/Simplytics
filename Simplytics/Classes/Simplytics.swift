@@ -26,7 +26,7 @@ open class Simplytics {
      * Log a specifc event.
      * returns a unique id for the event which can be used to time an event duration by calling simplytics.endEvent.
      */
-    open func logEvent(_ event: String, funnel:String?=nil, withProperties properties: [String: String]?=nil) -> String {
+    open func logEvent(_ event: String, funnel:String?="", withProperties properties: [String: String]?=nil) -> String {
         let ep = List<EventProperties>()
         
         if properties != nil {
@@ -40,7 +40,7 @@ open class Simplytics {
         let realm = try! Realm()
         let uuid = UUID().uuidString
         try! realm.write() {
-            realm.create(SEvent.self, value: [uuid, event, Date(), Date(), application, ep])
+            realm.create(SEvent.self, value: [uuid, event, Date(), Date(), application, funnel, ep])
         }
         return uuid
     }
@@ -110,17 +110,20 @@ open class Simplytics {
                     self.application.salesforceid = sfdcid
                     realm.add(self.application, update: true)
                 }
+            var jsonbody : String = ""
                 // then insert events into salesforce
                  try! realm.write {
                     let events = realm.objects(SEvent.self).filter("application.id = '\(self.application.id)'")
-                    var ej = "{\"applicationid\" : \"\(self.application.id)\", \"events\" : ["
+                    var ej = "{\"applicationid\" : \"\(self.application.salesforceid)\", \"events\" : ["
                     for e in events {
                          ej.append(e.asJSON()+",")
                     }
-                    let jsonbody = ej.substring(to: ej.index(before: ej.endIndex))+"]}"
+                    jsonbody = ej.substring(to: ej.index(before: ej.endIndex))+"]}"
+                    //print(jsonbody)
                 }
+         
             
-            return salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: ["forApp" : self.application.salesforceid], headers: ["Content-Type":"application/json"])
+            return salesforce.apex(method: Resource.HTTPMethod.post, path: "/Simplytics", parameters: ["forApp" : self.application.salesforceid], body: jsonbody.data(using: .utf8), contentType: "application/json")
         }.then { //clear everything ready for next time.
             (result: Data) -> Void in
             let realm = try! Realm()
