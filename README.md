@@ -24,7 +24,7 @@ An example of using Simplytics with Salesforce data.
 * Featured View
 An example of a funnel consisting of multiple screens and tracking app navigation.
 
-<img src="https://github.com/quintonwall/Simplytics/readme-assets/sample-app.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/blob/master/readme-assets/sample-app.png?raw=true" width=270/>
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -150,11 +150,11 @@ The following standard reports have been created to assist in tracking and repor
 
 * Mobile App Versions by Device
 A report listing each mobile app version, grouped by which devices it is running on.
-<img src="https://github.com/quintonwall/Simplytics/readme-assets/report-versions.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/blob/master/readme-assets/report-versions.png?raw=true" width=270/>
 
 * Mobile App Events by App by Device
 A report listing all the events for each specific instance of the app. This is helpful especially if a customer is having an issue. You can request their UUID and filter events for that specific device.
-<img src="https://github.com/quintonwall/Simplytics/readme-assets/report-events.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/blob/master/readme-assets/report-events.png?raw=true" width=270/>
 
 
 
