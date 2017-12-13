@@ -26,7 +26,7 @@ An example of a funnel consisting of multiple screens and tracking app navigatio
 
 <img src="https://github.com/quintonwall/Simplytics/blob/master/readme-assets/sample-app.png?raw=true" width=500/>
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first. Don't forget to set your Salesforce connection configuration in AppDelegate.
 
 ## Installation
 
