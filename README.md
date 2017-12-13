@@ -24,7 +24,7 @@ An example of using Simplytics with Salesforce data.
 * Featured View
 An example of a funnel consisting of multiple screens and tracking app navigation.
 
-<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/readme-assets/sample-app.png?raw=true" width=270/>
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
@@ -43,7 +43,7 @@ pod 'Simplytics'
 ## Setup
 
 ### Mobile App
-V1 relies on SwiftlySaleforce for authentication to salesforce. Support for the Salesforce Mobile SDK will come shortly with a refactor to the auth config. For now, setting up Simplytics should be handled directly after the SwiftlySalesforce config in the didFinishLauchingWithOptions func of your AppDelegate:
+V1 relies on [SwiftlySaleforce](https://github.com/mike4aday/SwiftlySalesforce) for authentication to salesforce. Support for the Salesforce Mobile SDK will come shortly with a refactor to the auth config. For now, setting up Simplytics should be handled directly after the SwiftlySalesforce config in the didFinishLauchingWithOptions func of your AppDelegate:
 
 ```swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -150,11 +150,11 @@ The following standard reports have been created to assist in tracking and repor
 
 * Mobile App Versions by Device
 A report listing each mobile app version, grouped by which devices it is running on.
-<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/readme-assets/report-versions.png?raw=true" width=270/>
 
 * Mobile App Events by App by Device
 A report listing all the events for each specific instance of the app. This is helpful especially if a customer is having an issue. You can request their UUID and filter events for that specific device.
-<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
+<img src="https://github.com/quintonwall/Simplytics/readme-assets/report-events.png?raw=true" width=270/>
 
 
 
