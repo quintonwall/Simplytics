@@ -13,6 +13,19 @@ Simplytics is a lightweight logging framework for iOS apps which use Salesforce 
 
 ## Example
 
+An example app is included which demonstrates typical configuration and usage patterns of Simplytics. At a high level, you can breakdown the app into the following sections.
+
+* Configuration
+Check out AppDelegate.swift for how to instantiate Simplytics.
+
+* Contact List
+An example of using Simplytics with Salesforce data.
+
+* Featured View
+An example of a funnel consisting of multiple screens and tracking app navigation.
+
+<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
+
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Installation
@@ -54,15 +67,16 @@ To write events to Salesforce is via the writeToSalesforce func, which accepts a
 simplytics.writeToSalesforce(salesforce)
 ```
 
-The easiest, and most efficient time to write events is by adding calls to simplytics within your AppDelegate lifecycle events, applicationWillResignActive and/or applicationWillTerminate. This allows batching writes to save Salesforce API calls, and performs the (async) network operation when the user isn't actively using your app. The result is users will never see any performance impact on your app experience. Of course, you can call writeToSalesforce any time you like, as long as you have already authenticated into salesforce.
+The easiest, and most efficient time to write events is by adding calls to simplytics within your AppDelegate lifecycle event, applicationWillResignActive and/or applicationWillTerminate. This allows batching writes to save Salesforce API calls, and performs the (async) network operation when the user isn't actively using your app. The result is users will never see any performance impact on your app experience. Of course, you can call writeToSalesforce any time you like, as long as you have already authenticated into salesforce.
 
 ```swift
 func applicationWillResignActive(_ application: UIApplication) {
     simplytics.writeToSalesforce(salesforce)
 }
 ```
+It is important to note that, for security and policy reasons,  Salesforce does not allow API calls when an app is running in the background.  This means that any call to writeToSaleforce within applicationWillTerminate will not be written until the next time the app runs and writeToSalesforce is called. Simplytics persistents all log events locally in a Realm database. This means that you will not loose any events logged when in the background, but you can not persist an eventid across app sessions. In other words, you cant call endEvent and correctly have event duration calculated.
 
-For a complete example of configuring Simplytics, check out the AppDelegate in the sample app.
+For a complete example of configuring Simplytics, including how to log app active duration, check out the AppDelegate in the sample app.
 
 ### Salesforce
 Install the following unmanaged package into your Salesforce org. This will create the require custom objects where events are stored, an ApexRest service used to post events to Salesforce, and a collection of reports to track mobile app usage.
@@ -134,14 +148,19 @@ The dictionary properies associated with an event
 #### Reports
 The following standard reports have been created to assist in tracking and reporting on mobile app activity. These are intended to be starting points for customization by your Salesforce Administrator.
 
+* Mobile App Versions by Device
+A report listing each mobile app version, grouped by which devices it is running on.
+<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
 
-
+* Mobile App Events by App by Device
+A report listing all the events for each specific instance of the app. This is helpful especially if a customer is having an issue. You can request their UUID and filter events for that specific device.
+<img src="https://github.com/quintonwall/DreamhouseAnywhere/blob/master/graphics/screenshots/Menu.png?raw=true" width=270/>
 
 
 
 ## Author
 
-quintonwall, qwall@salesforce.com
+quintonwall, hello@quinton.me
 
 ## License
 
