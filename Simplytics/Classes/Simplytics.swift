@@ -40,7 +40,7 @@ open class Simplytics {
         let realm = try! Realm()
         let uuid = UUID().uuidString
         try! realm.write() {
-            realm.create(SEvent.self, value: [uuid, event, Date(), Date(), application, funnel, ep])
+            realm.create(SEvent.self, value: [uuid, event, Date(), Date(), 0.0, application, funnel, ep])
         }
         return uuid
     }
@@ -48,7 +48,14 @@ open class Simplytics {
     public func endEvent(_ eventid : String) {
        let realm = try! Realm()
         try! realm.write {
-             realm.create(SEvent.self, value: ["id": eventid, "endedAt": Date()], update: true)
+             let evt = realm.object(ofType: SEvent.self, forPrimaryKey: eventid)
+            guard evt != nil else {
+                print("End event for id \(eventid) aborted. Event id does not exist.")
+                return
+            }
+            evt!.endedAt = Date()
+            evt!.calcDuration()
+           realm.add(evt!, update: true)
         }
     }
     
@@ -119,7 +126,7 @@ open class Simplytics {
                          ej.append(e.asJSON()+",")
                     }
                     jsonbody = ej.substring(to: ej.index(before: ej.endIndex))+"]}"
-                    //print(jsonbody)
+                   // print(jsonbody)
                 }
          
             

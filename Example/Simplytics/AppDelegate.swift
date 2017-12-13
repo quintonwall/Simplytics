@@ -18,6 +18,7 @@ var simplytics: Simplytics!
 class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
 
     var window: UIWindow?
+    var appeventid : String = ""
     
     //salesforce connection config
     let consumerKey = "3MVG9g9rbsTkKnAVc3vWPrd4Tx1r09vhebUfiPsDFQoNUaKlpRgS10L.Pl5pRhx0anOVUUd4ERieJr6WwWijr"
@@ -31,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
         salesforce = configureSalesforce(consumerKey: consumerKey, callbackURL: callbackURL, loginHost: hostname)
         simplytics = Simplytics()
         simplytics.logApp(Bundle.main.bundleIdentifier!)
+        appeventid = simplytics.logEvent("App Active")
+        print("APPEVENTID: \(appeventid)")
         return true
     }
     
@@ -42,7 +45,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-        simplytics.writeToSalesforce(salesforce)
+        
+        // each time the app goes into the background we end the App Active event. What this means is that logged app duration will be total time the app process is running, not just when the app is active.
+       simplytics.endEvent(appeventid)
+       simplytics.writeToSalesforce(salesforce)
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
@@ -60,8 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        simplytics.writeToSalesforce(salesforce)
+       //example of tracking active duration of entire app
+        
+        //NOTE: Salesforce does not allow writes when the app is in the background. Adding any calls here to simplytics.writeToSalesforce will fail.
     }
 
 

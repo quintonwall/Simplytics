@@ -19,8 +19,13 @@ import RealmSwift
     /// defaults to createdAt time, call simplytics.endEvent to set
     dynamic var endedAt = Date()
     
+    /// how long did the event take. defaults to 0.0 if endEvent is not called.
+    dynamic var duration = 0.0
+    
      /// the application which this tracked event is related to
     dynamic var application : SApplication?
+    
+    
     
     /// funnel name
     dynamic var funnel = "" {
@@ -50,8 +55,10 @@ import RealmSwift
             propsjson = ej.substring(to: ej.index(before: ej.endIndex))+"]"
         }
         
-        return "{\"id\": \"\(id)\",\"name\": \"\(name)\",\"funnel\": \"\(funnel.uppercased())\",\"createdAt\": \"\(createdAt.toDateTimeStringWithSeconds())\",\"endedAt\": \"\(endedAt.toDateTimeStringWithSeconds())\",\"properties\": \(propsjson), \"application\": \"\(application!.id)\"}"
+        return "{\"id\": \"\(id)\",\"name\": \"\(name)\",\"funnel\": \"\(funnel.uppercased())\",\"createdAt\": \"\(createdAt.toDateTimeStringWithSeconds())\",\"endedAt\": \"\(endedAt.toDateTimeStringWithSeconds())\",\"properties\": \(propsjson), \"duration\": \(duration), \"application\": \"\(application!.id)\"}"
     }
     
-    
+    func calcDuration() {
+        duration = Double((endedAt.millisecondsSince1970 - createdAt.millisecondsSince1970) / 1000)
+    }
 }

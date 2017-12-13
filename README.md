@@ -54,7 +54,7 @@ To write events to Salesforce is via the writeToSalesforce func, which accepts a
 simplytics.writeToSalesforce(salesforce)
 ```
 
-The easiest, and most efficient way to  write events is by adding calls to simplytics within your AppDelegate lifecycle events, applicationWillResignActive and/or applicationWillTerminate. This allows batching writes to save Salesforce API calls, and performs the (async) network operation when the user isn't actively using your app. The result is users will never see any performance impact on your app experience.
+The easiest, and most efficient time to write events is by adding calls to simplytics within your AppDelegate lifecycle events, applicationWillResignActive and/or applicationWillTerminate. This allows batching writes to save Salesforce API calls, and performs the (async) network operation when the user isn't actively using your app. The result is users will never see any performance impact on your app experience. Of course, you can call writeToSalesforce any time you like, as long as you have already authenticated into salesforce.
 
 ```swift
 func applicationWillResignActive(_ application: UIApplication) {
@@ -65,21 +65,74 @@ func applicationWillResignActive(_ application: UIApplication) {
 For a complete example of configuring Simplytics, check out the AppDelegate in the sample app.
 
 ### Salesforce
+Install the following unmanaged package into your Salesforce org. This will create the require custom objects where events are stored, an ApexRest service used to post events to Salesforce, and a collection of reports to track mobile app usage.
+
+TODO: add package install
 
 ## Usage
 ### Mobile App
 
-### Log an event
+#### Log an event
+Events are logged using the logEvent function:
+
+```swift
+logEvent(_ event: String, funnel:String?="", withProperties properties: [String: String]?=nil)
+```
+
+The most basic form of event log accepts an event name, for example if you want to log when a screen is loaded:
+
+```swift
+ simplytics.logEvent("View shopping cart")
+```
+
+Generally, you want to also include the event in a funnel to track a particular use case or app flow such as on-boarding, check-out etc. A funnel is simply a name which can be used later within Salesforce to report upon.
+
+```swift
+simplytics.logEvent("Added Credit Card", funnel: "Checkout")
+```
 
 ### Events with properties
+To add additional information to an event log, you can pass in a Dictionary  object. This is especially useful if you want to include contextual information. For example, if your app includes a list of Contact records from Salesforce you want to log whenever a user selects a row in a table, and which contact record they selected.
+
+```swift
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! ContactsTableViewCell
+    simplytics.logEvent("Selected Table Row", funnel: "Contacts", withProperties: ["Contact Selected" : cell.contactid!])
+}
+```
 
 ### Timed events
+There are times where you want to track duration of user activity within your app, or general app analytics. For example, how long a network operation takes, or how long a user remains on a screen. To achieve this, call endEvent, passing in the event id. The example below creates an event when a view becomes active and then ends the event when a seque is called navigating the user away. The example also adds another event to capture the from-to navigation details to assist in understand user activity and flow within your app.
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    eventid = simplytics.logEvent("Featured View screen Loaded", funnel: "Featured")
+}
+
+override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    simplytics.logEvent("Navigation", funnel: "Featured", withProperties: ["From" : "FeaturedView", "To" : "Page2"])
+    simplytics.endEvent(eventid)
+}
+```
+
 
 
 ### Salesforce
 #### Object model
+The Simplytics object model is pretty basic, consisting of three objects
+
+* Simplytics_Application__c
+Stores application level information. A new application record is written whenever a new version or build or your mobile application is created.
+
+* Simplytics_Event__c
+The event record created through logEvent. Events contain a master-detail relationship to Simplytics_Application__c
+
+* Simplytics_EventProperty__c
+The dictionary properies associated with an event
 
 #### Reports
+The following standard reports have been created to assist in tracking and reporting on mobile app activity. These are intended to be starting points for customization by your Salesforce Administrator.
 
 
 
