@@ -79,9 +79,8 @@ It is important to note that, for security and policy reasons,  Salesforce does 
 For a complete example of configuring Simplytics, including how to log app active duration, check out the AppDelegate in the sample app.
 
 ### Salesforce
-Install the following unmanaged package into your Salesforce org. This will create the require custom objects where events are stored, an ApexRest service used to post events to Salesforce, and a collection of reports to track mobile app usage.
+Install the [Simplytics unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1I000002y235) into your Salesforce org. This will create the require custom objects where events are stored, an ApexRest service used to post events to Salesforce, and a collection of reports to track mobile app usage.
 
-TODO: add package install
 
 ## Usage
 ### Mobile App
