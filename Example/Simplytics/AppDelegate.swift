@@ -21,9 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
     var appeventid : String = ""
     
     //salesforce connection config
-    let consumerKey = "3MVG9g9rbsTkKnAVc3vWPrd4Tx1r09vhebUfiPsDFQoNUaKlpRgS10L.Pl5pRhx0anOVUUd4ERieJr6WwWijr"
-    let callbackURL = URL(string: "simplytics://success")!
-    let hostname = "na73.lightning.force.com"
+    let consumerKey = "ADD-YOUR-CONSUMER-KEY"
+    let callbackURL = URL(string: "ADD-YOUR-CALLBACK-URL-FROM-CONNECTED-APP")!
+    let hostname = "ADD-YOUR-POD.lightning.force.com"
     
 
 
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
         simplytics = Simplytics()
         simplytics.logApp(Bundle.main.bundleIdentifier!)
         appeventid = simplytics.logEvent("App Active")
-        print("APPEVENTID: \(appeventid)")
+       
         return true
     }
     
