@@ -159,7 +159,7 @@ A report listing all the events for each specific instance of the app. This is h
 
 ## Author
 
-quintonwall, hello@quinton.me
+[Quinton Wall](https://twitter.com/quintonwall)
 
 ## License
 
