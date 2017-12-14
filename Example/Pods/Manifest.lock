@@ -17,8 +17,8 @@ PODS:
     - Realm (= 3.0.2)
   - Simplytics (0.1.0):
     - RealmSwift (~> 3.0.2)
-    - SwiftlySalesforce
-  - SwiftlySalesforce (6.0.0):
+    - SwiftlySalesforce (~> 6.0.1)
+  - SwiftlySalesforce (6.0.1):
     - PromiseKit (~> 4.0)
 
 DEPENDENCIES:
@@ -32,8 +32,8 @@ SPEC CHECKSUMS:
   PromiseKit: 9c1d9f6d7b65e3951a90bea7f407c56972be5d8e
   Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
   RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
-  Simplytics: 87aa1a6291436561bbfe04166d8087743df7672c
-  SwiftlySalesforce: c9809e19c87a7919d8adfd5181385aa19798ed31
+  Simplytics: d64fc2e97fd3b7872abb8e4392661b6887aa26ba
+  SwiftlySalesforce: fd55008c1902dcb1dd7f75c58ecc01af67833260
 
 PODFILE CHECKSUM: 1cc22cbe9115a6316deb5cf6f39b836f6f6de78f
 

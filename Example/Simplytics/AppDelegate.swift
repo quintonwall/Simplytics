@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LoginDelegate {
         simplytics = Simplytics()
         simplytics.logApp(Bundle.main.bundleIdentifier!)
         appeventid = simplytics.logEvent("App Active")
-       
+        print("APPEVENTID: \(appeventid)")
         return true
     }
     
